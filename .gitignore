@@ -24,8 +24,9 @@ Thumbs.db
 desktop.ini
 
 # 项目临时文件
-backend/downloads/
+backend/app/utils/downloads/
 backend/logs/
+backend/app/utils/cookies
 *.part
 *.log
 
