@@ -72,7 +72,6 @@ class VideoDownloader:
         }
         if "bilibili.com" in url:
             ydl_opts.update({
-                "cookiesfrombrowser": ("chrome",),
                 "http_headers": {
                     **ydl_opts["http_headers"],
                     "Referer": "https://www.bilibili.com/",
@@ -82,10 +81,6 @@ class VideoDownloader:
         elif "youtube.com" in url or "youtu.be" in url:
             pass
 
-        elif "douyin.com" in url:
-            ydl_opts.update({
-                "cookiesfrombrowser": ("chrome",),
-            })
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
 
@@ -199,7 +194,6 @@ class VideoDownloader:
         }
         if "bilibili.com" in url:
             ydl_opts.update({
-                "cookiesfrombrowser": ("chrome",),
                 "http_headers": {
                     **ydl_opts["http_headers"],
                     "Referer": "https://www.bilibili.com/",
@@ -208,11 +202,6 @@ class VideoDownloader:
 
         elif "youtube.com" in url or "youtu.be" in url:
             pass
-
-        elif "douyin.com" in url:
-            ydl_opts.update({
-                "cookiesfrombrowser": ("chrome",),
-            })
 
         if self.has_ffmpeg:
             ydl_opts["ffmpeg_location"] = self.ffmpeg_path
@@ -268,7 +257,6 @@ class VideoDownloader:
         }
         if "bilibili.com" in url:
             ydl_opts.update({
-                "cookiesfrombrowser": ("chrome",),
                 "http_headers": {
                     **ydl_opts["http_headers"],
                     "Referer": "https://www.bilibili.com/",
@@ -277,11 +265,6 @@ class VideoDownloader:
 
         elif "youtube.com" in url or "youtu.be" in url:
             pass
-
-        elif "douyin.com" in url:
-            ydl_opts.update({
-                "cookiesfrombrowser": ("chrome",),
-            })
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
