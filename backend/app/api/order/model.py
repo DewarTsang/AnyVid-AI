@@ -1,4 +1,4 @@
-from datetime import datetime, datetime_CAPI
+from datetime import datetime
 from decimal import Decimal
 
 from sqlalchemy import DateTime, ForeignKey, Integer, Numeric, String
@@ -43,7 +43,7 @@ class OrderModel(ModelMixin):
         String(255), nullable=True, comment="Stripe Payment Intent ID"
     )
     paid_at: Mapped[datetime | None] = mapped_column(
-        datetime_CAPI, nullable=True, index=True, comment="支付时间"
+        DateTime, nullable=True, index=True, comment="支付时间"
     )
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
