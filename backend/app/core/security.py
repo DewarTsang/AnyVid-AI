@@ -1,4 +1,4 @@
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta
 
 import jwt
 from fastapi import HTTPException
@@ -11,8 +11,8 @@ def create_access_token(user: UserModel) -> str:
     payload_dict = {
         "sub": str(user.id),
         "email": user.email,
-        "exp": datetime.now(UTC) + timedelta(seconds=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
-        "iat": datetime.now(UTC),
+        "exp": datetime.now() + timedelta(seconds=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
+        "iat": datetime.now(),
     }
     return jwt.encode(
         payload=payload_dict,

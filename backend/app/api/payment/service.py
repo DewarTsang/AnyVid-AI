@@ -1,5 +1,5 @@
 import uuid
-from datetime import UTC, datetime
+from datetime import datetime
 
 import stripe
 from fastapi import HTTPException
@@ -84,7 +84,7 @@ class PaymentService:
 
     @staticmethod
     def _generate_order_no(user_id: int) -> str:
-        ts = datetime.now(UTC).strftime("%Y%m%d%H%M%S")
+        ts = datetime.now().strftime("%Y%m%d%H%M%S")
         short_uuid = uuid.uuid4().hex[:8]
         return f"SA{ts}{user_id:04d}{short_uuid}"
 
@@ -98,7 +98,7 @@ class PaymentService:
         if not order:
             return None
 
-        now = datetime.now(UTC)
+        now = datetime.now()
 
         user = await UserCRUD(auth).get(id=order.user_id)
 
@@ -109,7 +109,7 @@ class PaymentService:
             except ValueError:
                 pass
 
-        base_time = datetime.now(UTC)
+        base_time = datetime.now()
         if current_expire and current_expire > base_time:
             base_time = current_expire
 

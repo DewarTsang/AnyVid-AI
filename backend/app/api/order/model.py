@@ -1,4 +1,4 @@
-from datetime import UTC, datetime
+from datetime import datetime, datetime_CAPI
 from decimal import Decimal
 
 from sqlalchemy import DateTime, ForeignKey, Integer, Numeric, String
@@ -43,19 +43,19 @@ class OrderModel(ModelMixin):
         String(255), nullable=True, comment="Stripe Payment Intent ID"
     )
     paid_at: Mapped[datetime | None] = mapped_column(
-        DateTime(timezone=True), nullable=True, index=True, comment="支付时间"
+        datetime_CAPI, nullable=True, index=True, comment="支付时间"
     )
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        default=lambda: datetime.now(UTC),
+        DateTime,
+        default=lambda: datetime.now(),
         nullable=False,
         comment="创建时间",
         index=True,
     )
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        default=lambda: datetime.now(UTC),
-        onupdate=lambda: datetime.now(UTC),
+        DateTime,
+        default=lambda: datetime.now(),
+        onupdate=lambda: datetime.now(),
         nullable=False,
         comment="更新时间",
         index=True,

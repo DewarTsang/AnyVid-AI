@@ -2,7 +2,7 @@ import asyncio
 import json
 from collections.abc import AsyncIterator
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import datetime
 
 from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -42,7 +42,7 @@ class SummarizeService:
 
     @classmethod
     async def check_and_increment_summary(cls, user_id: int, db: AsyncSession) -> tuple[bool, int]:
-        today = datetime.now(UTC).date()
+        today = datetime.now().date()
         auth = AuthSchema(db=db)
         user = await UserCRUD(auth).get_by_id_crud(user_id)
 
@@ -51,7 +51,7 @@ class SummarizeService:
 
         if user.is_vip and user.vip_expire_at:
             expire = user.vip_expire_at
-            if expire > datetime.now(UTC):
+            if expire > datetime.now():
                 return True, -1
 
         if user.last_summary_date != today:
