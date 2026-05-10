@@ -4,6 +4,18 @@ import shutil
 
 import yt_dlp
 
+SITE_CONFIG = {
+    "bilibili.com": {
+        "cookiefile": "cookies/bilibili.txt",
+    },
+    "douyin.com": {
+        "cookiefile": "cookies/douyin.txt",
+    },
+    "xiaohongshu.com": {
+        "cookiefile": "cookies/xhs.txt",
+    },
+}
+
 
 def _find_ffmpeg_path() -> str | None:
     """查找 ffmpeg 可执行文件路径"""
@@ -59,27 +71,14 @@ class VideoDownloader:
             "no_warnings": True,
             "extract_flat": False,
             "noplaylist": True,
-            "http_headers": {
-                "User-Agent": (
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/122.0.0.0 Safari/537.36"
-                ),
-                "Accept": "text/html,application/json,*/*",
-                "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-                "Connection": "keep-alive",
-            },
         }
-        if "bilibili.com" in url:
-            ydl_opts.update({
-                "http_headers": {
-                    **ydl_opts["http_headers"],
-                    "Referer": "https://www.bilibili.com/",
-                },
-            })
 
-        elif "youtube.com" in url or "youtu.be" in url:
-            pass
+        for domain, cookie_path in SITE_CONFIG.items():
+            if domain in url:
+                if os.path.exists(cookie_path):
+                    ydl_opts["cookiefile"] = cookie_path
+
+                break
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
@@ -181,27 +180,14 @@ class VideoDownloader:
             "quiet": True,
             "no_warnings": True,
             "noplaylist": True,
-            "http_headers": {
-                "User-Agent": (
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/122.0.0.0 Safari/537.36"
-                ),
-                "Accept": "text/html,application/json,*/*",
-                "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-                "Connection": "keep-alive",
-            },
         }
-        if "bilibili.com" in url:
-            ydl_opts.update({
-                "http_headers": {
-                    **ydl_opts["http_headers"],
-                    "Referer": "https://www.bilibili.com/",
-                },
-            })
 
-        elif "youtube.com" in url or "youtu.be" in url:
-            pass
+        for domain, cookie_path in SITE_CONFIG.items():
+            if domain in url:
+                if os.path.exists(cookie_path):
+                    ydl_opts["cookiefile"] = cookie_path
+
+                break
 
         if self.has_ffmpeg:
             ydl_opts["ffmpeg_location"] = self.ffmpeg_path
@@ -244,27 +230,14 @@ class VideoDownloader:
             "quiet": True,
             "no_warnings": True,
             "noplaylist": True,
-            "http_headers": {
-                "User-Agent": (
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/122.0.0.0 Safari/537.36"
-                ),
-                "Accept": "text/html,application/json,*/*",
-                "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-                "Connection": "keep-alive",
-            },
         }
-        if "bilibili.com" in url:
-            ydl_opts.update({
-                "http_headers": {
-                    **ydl_opts["http_headers"],
-                    "Referer": "https://www.bilibili.com/",
-                },
-            })
 
-        elif "youtube.com" in url or "youtu.be" in url:
-            pass
+        for domain, cookie_path in SITE_CONFIG.items():
+            if domain in url:
+                if os.path.exists(cookie_path):
+                    ydl_opts["cookiefile"] = cookie_path
+
+                break
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
