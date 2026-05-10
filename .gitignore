@@ -35,6 +35,7 @@ backend/logs/
 
 # 本地数据库（SQLite）
 backend/data/
+*.db
 
 # 测试脚本
 backend/test_*.py
