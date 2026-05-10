@@ -73,10 +73,10 @@ class VideoDownloader:
             "noplaylist": True,
         }
 
-        for domain, cookie_path in SITE_CONFIG.items():
+        for domain, config in SITE_CONFIG.items():
             if domain in url:
-                if os.path.exists(cookie_path):
-                    ydl_opts["cookiefile"] = cookie_path
+                if os.path.exists(config.get("cookiefile", '')):
+                    ydl_opts["cookiefile"] = config["cookiefile"]
 
                 break
 
@@ -182,10 +182,10 @@ class VideoDownloader:
             "noplaylist": True,
         }
 
-        for domain, cookie_path in SITE_CONFIG.items():
+        for domain, config in SITE_CONFIG.items():
             if domain in url:
-                if os.path.exists(cookie_path):
-                    ydl_opts["cookiefile"] = cookie_path
+                if os.path.exists(config.get("cookiefile", '')):
+                    ydl_opts["cookiefile"] = config["cookiefile"]
 
                 break
 
@@ -232,10 +232,10 @@ class VideoDownloader:
             "noplaylist": True,
         }
 
-        for domain, cookie_path in SITE_CONFIG.items():
+        for domain, config in SITE_CONFIG.items():
             if domain in url:
-                if os.path.exists(cookie_path):
-                    ydl_opts["cookiefile"] = cookie_path
+                if os.path.exists(config.get("cookiefile", '')):
+                    ydl_opts["cookiefile"] = config["cookiefile"]
 
                 break
 
