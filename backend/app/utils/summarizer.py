@@ -7,6 +7,7 @@ import yt_dlp
 from openai import OpenAI
 
 from app.config.setting import settings
+from app.utils.downloader import SITE_CONFIG
 
 
 def _is_bilibili_url(url: str) -> bool:
@@ -164,6 +165,11 @@ class SubtitleExtractor:
             "writeautomaticsub": True,
             "skip_download": True,
         }
+        for domain, config in SITE_CONFIG.items():
+            if domain in url:
+                if os.path.exists(config.get("cookiefile", '')):
+                    ydl_opts["cookiefile"] = config["cookiefile"]
+                    break
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
         if not info:
@@ -225,6 +231,11 @@ class SubtitleExtractor:
                 "subtitlesformat": "vtt",
                 "outtmpl": os.path.join(tmp_dir, "subtitle"),
             }
+            for domain, config in SITE_CONFIG.items():
+                if domain in url:
+                    if os.path.exists(config.get("cookiefile", '')):
+                        ydl_opts["cookiefile"] = config["cookiefile"]
+                        break
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([url])
 
