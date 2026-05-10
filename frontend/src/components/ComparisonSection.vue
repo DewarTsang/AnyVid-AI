@@ -24,9 +24,9 @@
             <tr v-for="(row, i) in rows" :key="row.feature" :class="i % 2 === 1 ? 'bg-gray-50/50' : ''">
               <td class="px-5 py-3 text-text-primary font-medium">{{ row.feature }}</td>
               <td class="px-5 py-3 text-center">
-                <span v-if="row.saveany === true" class="text-success text-base">✓</span>
-                <span v-else-if="row.saveany === false" class="text-text-muted">✗</span>
-                <span v-else class="text-text-primary">{{ row.saveany }}</span>
+                <span v-if="row.anyvid_ai === true" class="text-success text-base">✓</span>
+                <span v-else-if="row.anyvid_ai === false" class="text-text-muted">✗</span>
+                <span v-else class="text-text-primary">{{ row.anyvid_ai }}</span>
               </td>
               <td class="px-5 py-3 text-center text-text-secondary">
                 <span v-if="row.online === true" class="text-success text-base">✓</span>
@@ -48,14 +48,14 @@
 
 <script setup>
 const rows = [
-  { feature: '支持平台数量', saveany: '1800+', online: '10-50', desktop: '100-500' },
-  { feature: 'AI 视频总结', saveany: true, online: false, desktop: false },
-  { feature: '思维导图生成', saveany: true, online: false, desktop: false },
-  { feature: '字幕下载', saveany: 'SRT/VTT/TXT', online: '部分支持', desktop: '部分支持' },
-  { feature: '抖音无水印下载', saveany: true, online: '部分支持', desktop: '需登录' },
-  { feature: '最高画质', saveany: '4K', online: '720p-1080p', desktop: '4K' },
-  { feature: '无需安装', saveany: true, online: true, desktop: false },
-  { feature: '手机浏览器可用', saveany: true, online: '部分支持', desktop: false },
-  { feature: '费用', saveany: '免费', online: '免费/付费', desktop: '付费为主' },
+  { feature: '支持平台数量', anyvid_ai: '1800+', online: '10-50', desktop: '100-500' },
+  { feature: 'AI 视频总结', anyvid_ai: true, online: false, desktop: false },
+  { feature: '思维导图生成', anyvid_ai: true, online: false, desktop: false },
+  { feature: '字幕下载', anyvid_ai: 'SRT/VTT/TXT', online: '部分支持', desktop: '部分支持' },
+  { feature: '抖音无水印下载', anyvid_ai: true, online: '部分支持', desktop: '需登录' },
+  { feature: '最高画质', anyvid_ai: '4K', online: '720p-1080p', desktop: '4K' },
+  { feature: '无需安装', anyvid_ai: true, online: true, desktop: false },
+  { feature: '手机浏览器可用', anyvid_ai: true, online: '部分支持', desktop: false },
+  { feature: '费用', anyvid_ai: '免费', online: '免费/付费', desktop: '付费为主' },
 ]
 </script>

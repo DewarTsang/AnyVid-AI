@@ -24,4 +24,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://saveany.codefather.cn/sitemap.xml
+Sitemap: https://anyvid-ai.dewartsang.cn/sitemap.xml
