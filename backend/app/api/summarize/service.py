@@ -50,13 +50,11 @@ class SummarizeService:
             return False, 0
 
         if user.is_vip and user.vip_expire_at:
-            expire = datetime.fromisoformat(user["vip_expire_at"])
+            expire = user.vip_expire_at
             if expire > datetime.now(UTC):
                 return True, -1
 
         if user.last_summary_date != today:
-            print("日期", user.last_summary_date, today)
-            print(type(user.last_summary_date), type(today))
             await UserCRUD(auth).update(
                 id=user_id, data={"daily_summary_count": 1, "last_summary_date": today}
             )

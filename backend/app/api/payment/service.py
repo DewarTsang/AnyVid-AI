@@ -105,7 +105,7 @@ class PaymentService:
         current_expire = None
         if user.vip_expire_at:
             try:
-                current_expire = datetime.fromisoformat(user.vip_expire_at)
+                current_expire = user.vip_expire_at
             except ValueError:
                 pass
 
