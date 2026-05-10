@@ -4,15 +4,16 @@ import shutil
 
 import yt_dlp
 
+COOKIES_DIR = os.path.join(os.path.dirname(__file__), "cookies")
 SITE_CONFIG = {
     "bilibili.com": {
-        "cookiefile": "cookies/bilibili.txt",
+        "cookiefile": os.path.join(COOKIES_DIR, "bilibili.txt"),
     },
     "douyin.com": {
-        "cookiefile": "cookies/douyin.txt",
+        "cookiefile": os.path.join(COOKIES_DIR, "douyin.txt"),
     },
     "xiaohongshu.com": {
-        "cookiefile": "cookies/xhs.txt",
+        "cookiefile": os.path.join(COOKIES_DIR, "xhs.txt"),
     },
 }
 
