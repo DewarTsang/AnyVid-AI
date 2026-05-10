@@ -77,8 +77,7 @@ class VideoDownloader:
             if domain in url:
                 if os.path.exists(config.get("cookiefile", '')):
                     ydl_opts["cookiefile"] = config["cookiefile"]
-
-                break
+                    break
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
